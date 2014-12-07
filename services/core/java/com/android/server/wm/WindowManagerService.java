@@ -6188,6 +6188,11 @@ public class WindowManagerService extends IWindowManager.Stub
     }
 
     @Override
+    public boolean hasPermanentMenuKey() {
+        return mPolicy.hasPermanentMenuKey();
+    }
+
+    @Override
     public void sendCustomAction(Intent intent) {
         mPolicy.sendCustomAction(intent);
     }
