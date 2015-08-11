@@ -335,6 +335,18 @@ public final class AudioFormat implements Parcelable {
                 return "ENCODING_AAC_XHE";
             case ENCODING_AC4:
                 return "ENCODING_AC4";
+            case ENCODING_AMRNB:
+                return "ENCODING_AMRNB";
+            case ENCODING_AMRWB:
+                return "ENCODING_AMRWB";
+            case ENCODING_EVRC:
+                return "ENCODING_EVRC";
+            case ENCODING_EVRCB:
+                return "ENCODING_EVRCB";
+            case ENCODING_EVRCWB:
+                return "ENCODING_EVRCWB";
+            case ENCODING_EVRCNW:
+                return "ENCODING_EVRCNW";
             default :
                 return "invalid encoding " + enc;
         }
