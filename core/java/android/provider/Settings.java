@@ -4359,6 +4359,28 @@ public final class Settings {
          public static final String SCREENSHOT_SHUTTER_SOUND = "screenshot_shutter_sound";
 
         /**
+         * Whether the phone ringtone should be played in an increasing manner
+         * @hide
+         */
+        public static final String INCREASING_RING = "increasing_ring";
+         /** @hide */
+        public static final Validator INCREASING_RING_VALIDATOR = BOOLEAN_VALIDATOR;
+         /**
+         * Start volume fraction for increasing ring volume
+         * @hide
+         */
+        public static final String INCREASING_RING_START_VOLUME = "increasing_ring_start_vol";
+         /** @hide */
+        public static final Validator INCREASING_RING_START_VOLUME_VALIDATOR = ANY_STRING_VALIDATOR;
+         /**
+         * Ramp up time (seconds) for increasing ring
+         * @hide
+         */
+        public static final String INCREASING_RING_RAMP_UP_TIME = "increasing_ring_ramp_up_time";
+         /** @hide */
+        public static final Validator INCREASING_RING_RAMP_UP_TIME_VALIDATOR = ANY_STRING_VALIDATOR;
+
+         /**
          * Whether the phone vibrates on call connect
          * @hide
          */
@@ -4432,7 +4454,10 @@ public final class Settings {
             SHOW_BATTERY_PERCENT,
             NOTIFICATION_VIBRATION_INTENSITY,
             HAPTIC_FEEDBACK_INTENSITY,
-            DISPLAY_COLOR_MODE
+            DISPLAY_COLOR_MODE,
+            INCREASING_RING,
+            INCREASING_RING_START_VOLUME,
+            INCREASING_RING_RAMP_UP_TIME
         };
 
         /**
@@ -4643,6 +4668,9 @@ public final class Settings {
             VALIDATORS.put(WIFI_STATIC_DNS1, WIFI_STATIC_DNS1_VALIDATOR);
             VALIDATORS.put(WIFI_STATIC_DNS2, WIFI_STATIC_DNS2_VALIDATOR);
             VALIDATORS.put(SHOW_BATTERY_PERCENT, SHOW_BATTERY_PERCENT_VALIDATOR);
+            VALIDATORS.put(INCREASING_RING, INCREASING_RING_VALIDATOR);
+            VALIDATORS.put(INCREASING_RING_START_VOLUME	, INCREASING_RING_START_VOLUME_VALIDATOR);
+            VALIDATORS.put(INCREASING_RING_RAMP_UP_TIME, INCREASING_RING_RAMP_UP_TIME_VALIDATOR);
         }
 
         /**
