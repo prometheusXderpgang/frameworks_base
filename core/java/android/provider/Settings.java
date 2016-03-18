@@ -4681,6 +4681,17 @@ public final class Settings {
         public static final String SWAP_VOLUME_BUTTONS = "swap_volume_buttons";
 
         /**
+         * Override and forcefully disable the fullscreen keyboard
+         * @hide
+         */
+        public static final String DISABLE_FULLSCREEN_KEYBOARD = "disable_fullscreen_keyboard";
+
+        /**
+         * @hide
+         */
+        public static final String VOLUME_BUTTON_MUSIC_CONTROL = "volume_button_music_control";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
