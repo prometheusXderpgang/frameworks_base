@@ -606,6 +606,12 @@ public final class Settings {
             "android.settings.VOICE_INPUT_SETTINGS";
 
     /**
+    * Setting to allow setting rounded corner size and content padding
+    */
+    public static final String SYSUI_ROUNDED_SIZE = "sysui_rounded_size";
+    public static final String SYSUI_ROUNDED_CONTENT_PADDING = "sysui_rounded_content_padding";
+
+    /**
      * Activity Action: Show settings to configure input methods, in particular
      * allowing the user to enable input methods.
      * <p>

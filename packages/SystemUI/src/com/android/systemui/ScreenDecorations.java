@@ -270,7 +270,8 @@ public class ScreenDecorations extends SystemUI implements Tunable {
     }
 
     private boolean hasRoundedCorners() {
-        return mRoundedDefault > 0 || mRoundedDefaultBottom > 0 || mRoundedDefaultTop > 0;
+	return true;
+       // return mRoundedDefault > 0 || mRoundedDefaultBottom > 0 || mRoundedDefaultTop > 0;
     }
 
     private boolean shouldDrawCutout() {
@@ -292,11 +293,8 @@ public class ScreenDecorations extends SystemUI implements Tunable {
                 R.dimen.rounded_corner_content_padding_alt);
         int qsPadding = mContext.getResources().getDimensionPixelSize(
                 R.dimen.qs_corner_content_padding);
-	if (padding != 0 && Build.PRODUCT.equals("taimen")) {
-            setupStatusBarPadding(padding, qsPadding);
-        } else {
-            setupStatusBarPadding(padding_alt, qsPadding);
-        }
+
+        setupStatusBarPadding(padding, qsPadding);
 
     }
 
