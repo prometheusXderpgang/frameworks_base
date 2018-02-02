@@ -22,12 +22,6 @@
   <!-- System update service -->
   <java-symbol type="array" name="config_forceEnabledComponents" />
 
-  <java-symbol type="integer" name="config_buttonBrightnessSettingDefault" />
-  <java-symbol type="bool" name="config_deviceHasVariableButtonBrightness" />
-
-  <!-- Whether notify fingerprint client of successful cancelled authentication -->
-  <java-symbol type="bool" name="config_notifyClientOnFingerprintCancelSuccess" />
-
   <java-symbol type="string" name="reboot_to_recovery_title" />
   <java-symbol type="string" name="reboot_to_recovery_message" />
   <java-symbol type="string" name="reboot_to_bootloader_title" />
