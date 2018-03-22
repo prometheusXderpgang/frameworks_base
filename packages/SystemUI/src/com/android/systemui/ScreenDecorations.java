@@ -39,6 +39,9 @@ import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.Region;
 import android.hardware.display.DisplayManager;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Build;
 import android.os.SystemProperties;
 import android.provider.Settings.Secure;
 import android.support.annotation.VisibleForTesting;
@@ -279,7 +282,23 @@ public class ScreenDecorations extends SystemUI implements Tunable {
                 com.android.internal.R.bool.config_fillMainBuiltInDisplayCutout);
     }
 
-    private void setupPadding(int padding) {
+
+    private void setupStatusBarPaddingIfNeeded() {
+        // TODO: This should be moved to a more appropriate place, as it is not related to the
+        // screen decorations overlay.
+        int padding = mContext.getResources().getDimensionPixelSize(
+                R.dimen.rounded_corner_content_padding);
+        int padding_alt = mContext.getResources().getDimensionPixelSize(
+                R.dimen.rounded_corner_content_padding_alt);
+        if (padding != 0 && Build.PRODUCT.equals("taimen")) {
+            setupStatusBarPadding(padding);
+        } else {
+            setupStatusBarPadding(padding_alt);
+        }
+
+    }
+
+    private void setupStatusBarPadding(int padding) {
         // Add some padding to all the content near the edge of the screen.
         StatusBar sb = getComponent(StatusBar.class);
         View statusBar = (sb != null ? sb.getStatusBarWindow() : null);
