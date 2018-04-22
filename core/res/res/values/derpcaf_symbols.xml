@@ -84,4 +84,8 @@
   <!-- Settings icon tint color -->
   <java-symbol type="color" name="settings_icon_tint_color" />
 
+  <!-- Full screen aspect ratio -->
+  <java-symbol type="bool" name="config_haveHigherAspectRatioScreen" />
+  <java-symbol type="dimen" name="config_screenAspectRatio" />
+
 </resources>
