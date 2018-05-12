@@ -4676,6 +4676,24 @@ public final class Settings {
         public static final String MEDIA_SCANNER_ON_BOOT = "media_scanner_on_boot";
 
         /**
+         * @hide
+         */
+        public static final String OMNI_ASPECT_RATIO_APPS_LIST = "aspect_ratio_apps_list";
+
+        /** @hide */
+        private static final Validator OMNI_ASPECT_RATIO_APPS_LIST_VALIDATOR =
+                ANY_STRING_VALIDATOR;
+
+        /**
+         * @hide
+         */
+        public static final String OMNI_ASPECT_RATIO_APPS_ENABLED = "aspect_ratio_apps_enabled";
+
+        /** @hide */
+        private static final Validator OMNI_ASPECT_RATIO_APPS_ENABLED_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -4751,7 +4769,9 @@ public final class Settings {
             STATUSBAR_CLOCK_AM_PM_STYLE,
             STATUSBAR_CLOCK_DATE_DISPLAY,
             STATUSBAR_CLOCK_DATE_STYLE,
-            STATUSBAR_CLOCK_DATE_FORMAT
+            STATUSBAR_CLOCK_DATE_FORMAT,
+            OMNI_ASPECT_RATIO_APPS_ENABLED,
+            OMNI_ASPECT_RATIO_APPS_LIST
         };
 
         /**
@@ -4882,6 +4902,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUSBAR_CLOCK_DATE_STYLE);
             PRIVATE_SETTINGS.add(STATUSBAR_CLOCK_DATE_FORMAT);
             PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_GESTURE);
+            PRIVATE_SETTINGS.add(OMNI_ASPECT_RATIO_APPS_ENABLED);
+            PRIVATE_SETTINGS.add(OMNI_ASPECT_RATIO_APPS_LIST);
         }
 
 
@@ -4998,6 +5020,10 @@ public final class Settings {
             VALIDATORS.put(STATUSBAR_CLOCK_DATE_DISPLAY, STATUSBAR_CLOCK_DATE_DISPLAY_VALIDATOR);
             VALIDATORS.put(STATUSBAR_CLOCK_DATE_STYLE, STATUSBAR_CLOCK_DATE_STYLE_VALIDATOR);
             VALIDATORS.put(STATUSBAR_CLOCK_DATE_FORMAT, STATUSBAR_CLOCK_DATE_FORMAT_VALIDATOR);
+            VALIDATORS.put(OMNI_ASPECT_RATIO_APPS_ENABLED,
+                    OMNI_ASPECT_RATIO_APPS_ENABLED_VALIDATOR);
+            VALIDATORS.put(OMNI_ASPECT_RATIO_APPS_LIST,
+                    OMNI_ASPECT_RATIO_APPS_LIST_VALIDATOR);
         }
 
         /**
