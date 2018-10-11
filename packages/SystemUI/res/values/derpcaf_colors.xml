@@ -23,4 +23,8 @@
     <color name="floating_action_button_icon_color">@android:color/white</color>
 
     <color name="qs_icon_active_color">@*android:color/qs_icon_active_color</color>
+
+    <!-- Quicksettings main QS background-->
+    <color name="quick_settings_status_bar_background_color">#00000000</color>
+
 </resources>
