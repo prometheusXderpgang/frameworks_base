@@ -25,6 +25,9 @@ import android.os.SystemClock;
 
 import com.android.internal.statusbar.IStatusBarService;
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
+
 /**
  * Some custom utilities
  */
@@ -38,7 +41,25 @@ public class DerpcafUtils {
     }
 
     public static boolean deviceHasFlashlight(Context ctx) {
+
         return ctx.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
+    }
+
+    public static boolean isPackageInstalled(Context context, String pkg, boolean ignoreState) {
+        if (pkg != null) {
+            try {
+                PackageInfo pi = context.getPackageManager().getPackageInfo(pkg, 0);
+                if (!pi.applicationInfo.enabled && !ignoreState) {
+                    return false;
+                }
+            } catch (NameNotFoundException e) {
+                return false;
+            }
+        }
+        return true;
+    }
+     public static boolean isPackageInstalled(Context context, String pkg) {
+        return isPackageInstalled(context, pkg, true);
     }
 
     public static void toggleCameraFlash() {
