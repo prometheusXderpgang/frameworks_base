@@ -4444,8 +4444,13 @@ public final class Settings {
          *
          * @hide
          */
-
         public static final String HEADS_UP_STOPLIST_VALUES = "heads_up_stoplist_values";
+
+        /**
+         * Whether to show VoLTE icon or not
+         * @hide
+         */
+        public static final String SHOW_VOLTE_ICON = "volte_icon";
 
          /**
          * Show or hide clock
