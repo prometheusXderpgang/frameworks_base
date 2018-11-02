@@ -385,8 +385,6 @@ public class MobileSignalController extends SignalController<
                 icons.mDataType : 0;
         int volteIcon = mConfig.showVolteIcon && isEnhanced4gLteModeSettingEnabled()
                 ? getVolteResId() : 0;
-        boolean show5GIcon = mFiveGState.connected && isDataRegisteredOnLte()
-                && mCurrentState.dataConnected;
         if (DEBUG) {
             Log.d(mTag, "notifyListeners mAlwasyShowTypeIcon=" + mAlwasyShowTypeIcon
                     + "  mDataNetType:" + mDataNetType +
@@ -398,14 +396,13 @@ public class MobileSignalController extends SignalController<
                     + " icons.mDataType=" + icons.mDataType
                     + " mConfig.showVolteIcon=" + mConfig.showVolteIcon
                     + " isEnhanced4gLteModeSettingEnabled=" + isEnhanced4gLteModeSettingEnabled()
-                    + " volteIcon=" + volteIcon + " show5GIcon=" + show5GIcon);
+                    + " volteIcon=" + volteIcon);
         }
         callback.setMobileDataIndicators(statusIcon, qsIcon, typeIcon, qsTypeIcon,
                 activityIn, activityOut, 0,
                 0, volteIcon,
                 dataContentDescription, description, icons.mIsWide,
-                mSubscriptionInfo.getSubscriptionId(), mCurrentState.roaming,
-                show5GIcon, getCurrentFiveGIconId(), mFiveGState.dataConnected);
+                mSubscriptionInfo.getSubscriptionId(), mCurrentState.roaming);
     }
 
     @Override
