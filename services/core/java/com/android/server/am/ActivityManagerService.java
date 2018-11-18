@@ -25163,7 +25163,6 @@ public class ActivityManagerService extends IActivityManager.Stub
             ProcessRecord app = mLruProcesses.get(i);
             app.containsCycle = false;
         }
-
         for (int i=N-1; i>=0; i--) {
             ProcessRecord app = mLruProcesses.get(i);
             if (mEnableBServicePropagation && app.serviceb
