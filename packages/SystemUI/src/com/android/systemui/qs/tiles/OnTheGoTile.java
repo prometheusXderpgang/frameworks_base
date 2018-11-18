@@ -25,7 +25,7 @@ import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
 
 
-import com.android.internal.util.xtended.OnTheGoActions;
+import com.android.internal.util.derpcaf.OnTheGoActions;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 
 /** Quick settings tile: OnTheGo Mode **/
@@ -49,7 +49,7 @@ public class OnTheGoTile extends QSTileImpl<BooleanState> {
     protected void toggleState() {
         Intent service = (new Intent())
                 .setClassName("com.android.systemui",
-                "com.android.systemui.xtended.onthego.OnTheGoService");
+                "com.android.systemui.derpcaf.onthego.OnTheGoService");
         OnTheGoActions.processAction(mContext,
                 OnTheGoActions.ACTION_ONTHEGO_TOGGLE);
     }
@@ -80,7 +80,7 @@ public class OnTheGoTile extends QSTileImpl<BooleanState> {
 
     @Override
     public int getMetricsCategory() {
-        return MetricsEvent.XTENDED;
+        return MetricsEvent.DERPZONE;
     }
 
     @Override
