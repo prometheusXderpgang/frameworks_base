@@ -361,7 +361,7 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
     private void startOurDerpZoneActivity() {
         Intent nIntent = new Intent(Intent.ACTION_MAIN);
         nIntent.setClassName("com.android.settings",
-            "com.android.settings.Settingss$DerpZoneActivity");
+            "com.android.settings.Settings$DerpZoneActivity");
         mActivityStarter.startActivity(nIntent, true /* dismissShade */);
     }
 
