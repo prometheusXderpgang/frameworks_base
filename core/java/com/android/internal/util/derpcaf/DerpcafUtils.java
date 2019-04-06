@@ -16,6 +16,8 @@
 
 package com.android.internal.util.derpcaf;
 
+import android.Manifest;
+import android.app.NotificationManager;
 import android.app.ActivityManager;
 import android.app.AlertDialog; 
 import android.app.IActivityManager;
@@ -24,15 +26,27 @@ import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.Resources;
+import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CameraCharacteristics;
+import android.hardware.camera2.CameraManager;
+import android.hardware.fingerprint.FingerprintManager;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.hardware.input.InputManager;
+import android.media.AudioManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.PowerManager;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.os.SystemProperties;
+import android.os.SystemProperties;
 import android.os.SystemClock;
 import android.os.UserHandle;
 import android.view.IWindowManager;
@@ -47,6 +61,10 @@ import com.android.internal.R;
 import android.provider.Settings;
 import android.os.SystemProperties;
 import android.os.UserHandle;
+import android.telephony.TelephonyManager;
+import android.text.TextUtils;
+import android.util.DisplayMetrics;
+import android.os.Vibrator;
 
 import java.util.List;
 import java.util.Locale;
@@ -63,11 +81,21 @@ public class DerpcafUtils {
     public static final String INTENT_SCREENSHOT = "action_handler_screenshot";
     public static final String INTENT_REGION_SCREENSHOT = "action_handler_region_screenshot";
 
+    private static IStatusBarService mStatusBarService = null;
+
+    private static IStatusBarService getStatusBarService() {
+        synchronized (DerpcafUtils.class) {
+            if (mStatusBarService == null)
+                mStatusBarService = IStatusBarService.Stub.asInterface(
+                                ServiceManager.getService("statusbar"));
+            return mStatusBarService;
+        }
+    }
+
     public static void switchScreenOff(Context ctx) {
         PowerManager pm = (PowerManager) ctx.getSystemService(Context.POWER_SERVICE);
-        if (pm!= null) {
+        if (pm!= null)
             pm.goToSleep(SystemClock.uptimeMillis());
-        }
     }
 
     public static boolean deviceHasFlashlight(Context ctx) {
@@ -90,6 +118,47 @@ public class DerpcafUtils {
 
     public static boolean isPackageInstalled(Context context, String pkg) {
         return isPackageInstalled(context, pkg, true);
+    }
+
+    public static void toggleVolumePanel(Context context) {
+        AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+        am.adjustVolume(AudioManager.ADJUST_SAME, AudioManager.FLAG_SHOW_UI);
+    }
+
+    // Clear notifications
+    public static void clearAllNotifications() {
+        IStatusBarService service = getStatusBarService();
+        if (service != null) {
+            try {
+                service.onClearAllNotifications(ActivityManager.getCurrentUser());
+            } catch (RemoteException e) {
+            // do nothing.
+            }
+        }
+    }
+
+    // Toggle notifications panel
+    public static void toggleNotifications() {
+        IStatusBarService service = getStatusBarService();
+        if (service != null) {
+            try {
+                service.togglePanel();
+            } catch (RemoteException e) {
+            // do nothing.
+            }
+        }
+    }
+
+    // Toggle qs panel
+    public static void toggleQsPanel() {
+        IStatusBarService service = getStatusBarService();
+        if (service != null) {
+            try {
+                service.toggleSettingsPanel();
+            } catch (RemoteException e) {
+                // do nothing.
+            }
+        }
     }
 
     public static void restartSystemUi(Context context) {
@@ -218,12 +287,11 @@ public class DerpcafUtils {
         private static IStatusBarService mStatusBarService = null;
         private static IStatusBarService getStatusBarService() {
             synchronized (FireActions.class) {
-                if (mStatusBarService == null) {
+                if (mStatusBarService == null)
                     mStatusBarService = IStatusBarService.Stub.asInterface(
                             ServiceManager.getService("statusbar"));
                 }
                 return mStatusBarService;
-            }
         }
 
         public static void toggleCameraFlash() {
